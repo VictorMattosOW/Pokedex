@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "silk-bold";
+    src: url('./assets/Silkscreen-Bold.ttf');
+}
+
+@font-face {
+    font-family: "silk-regular";
+    src: url('./assets/Silkscreen-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    font-family: "silk-bold", monospace;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}

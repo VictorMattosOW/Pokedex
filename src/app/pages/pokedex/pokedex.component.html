@@ -1,0 +1,34 @@
+<div class="pokedex">
+    <div class="parte-superior">
+        <div class="circulo-grande"></div>
+        <div class="circulo-pequeno circulo-vermelho"></div>
+        <div class="circulo-pequeno circulo-amarelo"></div>
+        <div class="circulo-pequeno circulo-verde"></div>
+    </div>
+    <div class="container-tela">
+        <div class="bordar-cinza"> 
+            <div class="bolinha-vermelha">
+                <div class="circulo-vermelho-tela"></div>
+                <div class="circulo-vermelho-tela"></div>
+            </div>
+            <div class="tela">
+                <img src="../../../assets/574726.jpg" alt="" class="fundo">
+                <img *ngIf="pokeInfo.imagem != ''" src="{{pokeInfo.imagem}}" alt="" class="pokeImagem" >
+            </div>
+            <h3 class="pokeName" *ngIf="pokeInfo.id">{{pokeInfo.id}} - {{pokeInfo.nome}}</h3>
+        </div>
+    </div>
+        <div class="container-input">
+            <form (ngSubmit)="submittForm()" [formGroup]="formGroup" class="form">
+                <input class="input"placeholder="Nome ou numero" id="nome" formControlName="pokeName">
+                <button class="searchBtn" type="submit">
+                    <img class="pokeSearch" src="https://www.seekpng.com/png/detail/604-6049751_pixel-art-poke-ball.png">
+                </button>
+            </form>
+        </div>
+    <div class="buttons">
+        <button class="btn prev" (click)="prevPoke()">Prev <</button>
+        <button class="btn next" (click)="nextPoke()">Next ></button>
+    </div>
+</div>
+
