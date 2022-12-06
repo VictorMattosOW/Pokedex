@@ -14,12 +14,10 @@ export class PokedexComponent {
   formGroup = new FormGroup({
     pokeName: new FormControl()
   });
-  flagMaxPoke!: boolean;
   pokeId = 0;
 
   constructor(
     private listaPokemon: ListaPokemonService,
-    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -39,8 +37,6 @@ export class PokedexComponent {
           imagem: poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
         }
         this.pokeId = poke.id;
-        this.flagMaxPoke = false;
-        console.log(poke);
       }, (error) => {
         if (error.status === 404) {
           this.pokeInfo = {
@@ -48,16 +44,13 @@ export class PokedexComponent {
             id: 0,
             imagem: './assets/sonic-hedgehog.gif',
           }
-          this.flagMaxPoke = true;
         }
       });
   }
 
   nextPoke() {
-    if (!this.flagMaxPoke) {
-      this.pokeId += 1;
-      this.getPoke(this.pokeId);
-    }
+    this.pokeId += 1;
+    this.getPoke(this.pokeId);
   }
 
   prevPoke() {
