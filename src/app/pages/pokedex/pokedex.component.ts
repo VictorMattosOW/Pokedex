@@ -38,13 +38,15 @@ export class PokedexComponent {
         }
         this.pokeId = poke.id;
       }, (error) => {
+        console.log(error.status);
         if (error.status === 404) {
           this.pokeInfo = {
-            nome: 'Pokemon não encontrado',
+            nome: "Pokemon não encontrado",
             id: 0,
             imagem: './assets/sonic-hedgehog.gif',
           }
         }
+        console.log(this.pokeInfo.nome);
       });
   }
 

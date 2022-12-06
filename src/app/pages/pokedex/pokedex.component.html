@@ -15,7 +15,7 @@
                 <img src="../../../assets/574726.jpg" alt="" class="fundo">
                 <img *ngIf="pokeInfo.imagem != ''" src="{{pokeInfo.imagem}}" alt="" class="pokeImagem" >
             </div>
-            <h3 class="pokeName" *ngIf="pokeInfo.id">{{pokeInfo.id}} - {{pokeInfo.nome}}</h3>
+            <h3 class="pokeName" *ngIf="pokeInfo.nome">{{pokeInfo.id}} - {{pokeInfo.nome}}</h3>
         </div>
     </div>
         <div class="container-input">
