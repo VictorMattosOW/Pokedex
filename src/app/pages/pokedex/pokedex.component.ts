@@ -46,18 +46,19 @@ export class PokedexComponent {
             imagem: './assets/sonic-hedgehog.gif',
           }
         }
-        console.log(this.pokeInfo.nome);
       });
   }
 
   nextPoke() {
     this.pokeId += 1;
+    this.formGroup.get('pokeName')?.patchValue(this.pokeId);
     this.getPoke(this.pokeId);
   }
 
   prevPoke() {
     if (this.pokeId > 0) {
       this.pokeId -= 1;
+      this.formGroup.get('pokeName')?.patchValue(this.pokeId);
       this.getPoke(this.pokeId);
     }
   }
