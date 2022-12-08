@@ -48,13 +48,6 @@
   padding: 20px;
   margin-bottom: 15px;
 }
-
-.tela {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .bordar-cinza {
   display: flex;
   flex-direction: column;
@@ -81,7 +74,15 @@
   background-color: red;
 }
 
-.fundo {
+.tela {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+
+.img-fundo {
   position: relative;
   width: 90%;
   height: 85%;
@@ -91,9 +92,9 @@
 
 .pokeImagem {
   position: absolute;
-  bottom: 60%;
+  bottom: 48%;
   left: 50%;
-  transform: translate(-60%, 20%);
+  transform: translate(-50%, 50%);
   height: 110px;
   width: 110px;
 }
@@ -189,8 +190,6 @@
   }
 
   .pokeImagem {
-    bottom: 65%;
-    left: 52%;
     height: 95px;
     width: 95px;
   }
@@ -209,7 +208,5 @@
   .pokeImagem {
     height: 70px;
     width: 70px;
-    bottom: 52%;
-    left: 53%;
   }
 }
