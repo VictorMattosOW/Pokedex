@@ -1,6 +1,6 @@
 import { Pokemon } from './../shared/poke-info.model';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListaPokemonService } from '../service/lista-pokemon.service';
 
 @Component({
@@ -11,22 +11,24 @@ import { ListaPokemonService } from '../service/lista-pokemon.service';
 export class PokedexComponent {
 
   pokeInfo: Pokemon = new Pokemon();
-  formGroup = new FormGroup({
-    pokeName: new FormControl()
-  });
+  formGroupPoke!: FormGroup;
   pokeId = 0;
 
   constructor(
     private listaPokemon: ListaPokemonService,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.formGroupPoke = this.formBuilder.group({
+      pokeName: ['', [Validators.required, Validators.minLength(1)]],
+    })
   }
 
   submittForm() {
-    const pokeNomeNumb = this.formGroup.value.pokeName.toLowerCase();
+    const pokeNomeNumb = this.formGroupPoke!.value.pokeName.toLowerCase();
     this.getPoke(pokeNomeNumb);
-    this.formGroup.get('pokeName')?.patchValue('');
+    this.formGroupPoke?.get('pokeName')?.patchValue('');
   }
 
   getPoke(pokemon: any) {

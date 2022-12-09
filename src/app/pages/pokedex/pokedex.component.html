@@ -19,9 +19,9 @@
         </div>
     </div>
         <div class="container-input">
-            <form (ngSubmit)="submittForm()" [formGroup]="formGroup" class="form">
+            <form (ngSubmit)="submittForm()" [formGroup]="formGroupPoke" class="form">
                 <input class="input"placeholder="Nome ou numero" id="nome" formControlName="pokeName">
-                <button class="searchBtn" type="submit">
+                <button class="searchBtn" type="submit" [disabled]="formGroupPoke.invalid">
                     <img class="pokeSearch" src="./assets/download.png">
                 </button>
             </form>
