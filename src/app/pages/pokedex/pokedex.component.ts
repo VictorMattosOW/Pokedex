@@ -24,8 +24,9 @@ export class PokedexComponent {
   }
 
   submittForm() {
-    const pokeNomeNumb = this.formGroup.value.pokeName;
+    const pokeNomeNumb = this.formGroup.value.pokeName.toLowerCase();
     this.getPoke(pokeNomeNumb);
+    this.formGroup.get('pokeName')?.patchValue('');
   }
 
   getPoke(pokemon: any) {
@@ -51,14 +52,12 @@ export class PokedexComponent {
 
   nextPoke() {
     this.pokeId += 1;
-    this.formGroup.get('pokeName')?.patchValue(this.pokeId);
     this.getPoke(this.pokeId);
   }
 
   prevPoke() {
     if (this.pokeId > 0) {
       this.pokeId -= 1;
-      this.formGroup.get('pokeName')?.patchValue(this.pokeId);
       this.getPoke(this.pokeId);
     }
   }
