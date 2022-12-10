@@ -13,6 +13,7 @@ export class PokedexComponent {
   pokeInfo: Pokemon = new Pokemon();
   formGroupPoke!: FormGroup;
   pokeId = 0;
+  favoPokeArray: Pokemon[] = [];
 
   constructor(
     private listaPokemon: ListaPokemonService,
@@ -50,6 +51,10 @@ export class PokedexComponent {
           }
         }
       });
+  }
+
+  addFavorite(Pokemon: Pokemon) {
+    
   }
 
   nextPoke() {

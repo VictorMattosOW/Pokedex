@@ -13,6 +13,17 @@
     width: 100%;
 }
 
+li {
+    list-style-type: none;
+    margin-left: 10px;
+}
+
+.navbar-li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .pokedex {
     display: flex;
     flex-direction: column;

@@ -1,3 +1,4 @@
+import { FavoritosComponent } from './../favoritos/favoritos.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +9,10 @@ const routes: Routes = [
   {
     path: '',
     component: PokedexComponent
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent
   }
 ];
 
@@ -18,6 +23,6 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [PokedexComponent],
+  declarations: [PokedexComponent, FavoritosComponent],
 })
 export class PokedexModule { }
