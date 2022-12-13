@@ -10,7 +10,7 @@ export class ListaPokemonService {
 
   url = 'https://pokeapi.co/api/v2/pokemon/';
 
-  private pokeData = new BehaviorSubject<Pokemon>(new Pokemon());
+  private pokeData = new BehaviorSubject<Pokemon[]>([]);
 
   constructor(
     private httpClient: HttpClient
