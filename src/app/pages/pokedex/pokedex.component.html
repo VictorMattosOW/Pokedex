@@ -6,6 +6,8 @@
         <div class="circulo-pequeno circulo-verde"></div>
     </div>
     <div class="container-tela">
+        <input type="checkbox" (change)="addOrRemoveFavorite($event)" [checked]="pokeInfo.favorito">
+        <button (click)="showArray()">show</button>
         <div class="bordar-cinza"> 
             <div class="bolinha-vermelha">
                 <div class="circulo-vermelho-tela"></div>

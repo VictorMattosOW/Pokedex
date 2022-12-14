@@ -13,14 +13,15 @@ export class PokedexComponent {
   pokeInfo: Pokemon = new Pokemon();
   formGroupPoke!: FormGroup;
   pokeId = 0;
-  favoPokeArray: Pokemon[] = [];
+  favoPokeArray?: Pokemon[] = [];
 
   constructor(
-    private listaPokemon: ListaPokemonService,
+    private pokemonService: ListaPokemonService,
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.getFavoritePokemon();
     this.formGroupPoke = this.formBuilder.group({
       pokeName: ['', [Validators.required, Validators.minLength(1)]],
     })
@@ -33,7 +34,7 @@ export class PokedexComponent {
   }
 
   getPoke(pokemon: any) {
-    this.listaPokemon.getPokemon(pokemon)
+    this.pokemonService.getPokemon(pokemon)
       .subscribe(poke => {
         this.pokeInfo = {
           nome: poke.name,
@@ -41,6 +42,7 @@ export class PokedexComponent {
           imagem: poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
         }
         this.pokeId = poke.id;
+        this.isFavoritePokemon(this.pokeInfo);
       }, (error) => {
         console.log(error.status);
         if (error.status === 404) {
@@ -53,8 +55,30 @@ export class PokedexComponent {
       });
   }
 
-  addFavorite(Pokemon: Pokemon) {
-    
+  addOrRemoveFavorite(event: any) {
+    if(event.target.checked && !this.pokeInfo.favorito) {
+      this.pokeInfo.favorito = true;
+      this.favoPokeArray?.push(this.pokeInfo);
+    } else {
+      this.favoPokeArray?.forEach((poke, index) => {
+        if(poke.id === this.pokeInfo.id) {
+          this.favoPokeArray?.splice(index, 1);
+        }
+      })
+    }
+    this.pokemonService.setPokemon(this.favoPokeArray);
+  }
+
+  isFavoritePokemon(pokemon: Pokemon) {
+    this.favoPokeArray?.forEach((poke) => {
+      if(poke.id === pokemon.id && poke.favorito) {
+        this.pokeInfo.favorito = true;
+      }
+    })
+  }
+
+  showArray(){
+    console.log(this.favoPokeArray);
   }
 
   nextPoke() {
@@ -67,5 +91,11 @@ export class PokedexComponent {
       this.pokeId -= 1;
       this.getPoke(this.pokeId);
     }
+  }
+
+  getFavoritePokemon() {  
+    this.pokemonService.getPokemonObservable().subscribe(poke => {
+      this.favoPokeArray = poke;
+    })
   }
 }
